@@ -16,7 +16,12 @@ import {
   Cpu,
   CheckCircle,
   XCircle,
-  TrendingUp
+  TrendingUp,
+  Copy,
+  Share2,
+  Save,
+  MessageSquare,
+  Shield
 } from 'lucide-react';
 
 interface Domain {
@@ -914,82 +919,188 @@ const PromptCraftGenerator: React.FC = () => {
           </div>
         )}
 
-        {/* Generated Output */}
+        {/* Enhanced Output Section */}
         {promptCraftJson && (
-          <div className="bg-slate-800/50 backdrop-blur-xl rounded-xl p-8 border border-slate-700">
-            <h3 className="text-lg font-semibold text-white mb-8 flex items-center">
-              <FileText className="w-5 h-5 mr-2 text-purple-400" />
-              Generated PromptCraft 2.0 Output
-            </h3>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-white font-medium">Enhanced Prompt</h4>
-                  <div className="flex items-center space-x-3">
-                    <span className="text-xs text-slate-400">
-                      {promptCraftJson.metadata.estimated_tokens} tokens
-                    </span>
-                    <span className="text-xs bg-purple-500/20 text-purple-300 px-3 py-1 rounded-full">
-                      Complexity: {promptCraftJson.metadata.complexity_score}/10
-                    </span>
-                  </div>
-                </div>
-                <div className="bg-slate-900 rounded-lg p-6 text-slate-200 text-sm overflow-auto max-h-96 border border-slate-600">
-                  <div className="mb-4">
-                    <strong className="text-blue-400">System:</strong>
-                    <p className="mt-2 leading-relaxed">{promptCraftJson.prompt.system}</p>
+          <div className="output-main-container fade-in-up">
+            {/* Header Section */}
+            <div className="output-header-section">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center space-x-3">
+                  <div className="output-icon-wrapper">
+                    <Sparkles className="w-6 h-6" />
                   </div>
                   <div>
-                    <strong className="text-green-400">User:</strong>
-                    <p className="mt-2 leading-relaxed">{generatedPrompt}</p>
+                    <h3 className="output-title">Generated PromptCraft 2.0 Output</h3>
+                    <p className="output-subtitle">Advanced prompt engineering results</p>
                   </div>
                 </div>
-              </div>
-              
-              <div>
-                <div className="flex items-center justify-between mb-4">
-                  <h4 className="text-white font-medium">PromptCraft Metadata</h4>
-                  <button
-                    onClick={() => {
-                      if (promptCraftJson) {
-                        const blob = new Blob([JSON.stringify(promptCraftJson, null, 2)], {type: 'application/json'});
-                        const url = URL.createObjectURL(blob);
-                        const a = document.createElement('a');
-                        a.href = url;
-                        a.download = `promptcraft-${promptCraftJson.id}.json`;
-                        a.click();
-                      }
-                    }}
-                    className="text-xs bg-slate-600 hover:bg-slate-500 text-white px-4 py-2 rounded-lg transition-colors"
-                  >
-                    Download
-                  </button>
-                </div>
-                <div className="bg-slate-900 rounded-lg p-6 text-slate-200 text-xs overflow-auto max-h-96 border border-slate-600">
-                  <pre className="whitespace-pre-wrap">{JSON.stringify(promptCraftJson, null, 2)}</pre>
+                <div className="output-status-badge">
+                  <CheckCircle className="w-4 h-4" />
+                  <span>Ready</span>
                 </div>
               </div>
             </div>
 
-            {/* Deployment Preview */}
-            <div className="mt-8 p-6 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/30 rounded-lg">
-              <h4 className="text-white font-medium mb-4 flex items-center">
-                <Send className="w-4 h-4 mr-2" />
-                Ready for Deployment
-              </h4>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-sm">
-                <div>
-                  <p className="text-slate-400 mb-1">Target Model:</p>
-                  <p className="text-white font-medium">{llmModels.find(m => m.id === selectedModel)?.name}</p>
+            {/* Main Content Grid */}
+            <div className="output-content-grid">
+              {/* Left Column - Prompt Display */}
+              <div className="output-left-column">
+                {/* Prompt Card */}
+                <div className="prompt-display-card">
+                  <div className="prompt-card-header">
+                    <div className="flex items-center space-x-2">
+                      <MessageSquare className="w-5 h-5 text-blue-500" />
+                      <h4 className="prompt-card-title">Enhanced Prompt</h4>
+                    </div>
+                    <div className="prompt-metrics">
+                      <span className="metric-badge tokens">
+                        <Cpu className="w-3 h-3" />
+                        {promptCraftJson.metadata.estimated_tokens} tokens
+                      </span>
+                      <span className="metric-badge complexity">
+                        <TrendingUp className="w-3 h-3" />
+                        {promptCraftJson.metadata.complexity_score}/10
+                      </span>
+                    </div>
+                  </div>
+                  
+                  <div className="prompt-content">
+                    <div className="prompt-section system">
+                      <div className="prompt-section-label">
+                        <Shield className="w-4 h-4" />
+                        System Instruction
+                      </div>
+                      <div className="prompt-section-content">
+                        {promptCraftJson.prompt.system}
+                      </div>
+                    </div>
+                    
+                    <div className="prompt-section user">
+                      <div className="prompt-section-label">
+                        <MessageSquare className="w-4 h-4" />
+                        User Prompt
+                      </div>
+                      <div className="prompt-section-content">
+                        {generatedPrompt}
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-slate-400 mb-1">Domain:</p>
-                  <p className="text-white font-medium">{selectedDomain}</p>
+
+                {/* Advanced Analytics */}
+                <div className="analytics-card">
+                  <div className="analytics-header">
+                    <h5 className="analytics-title">Prompt Analytics</h5>
+                  </div>
+                  <div className="analytics-grid">
+                    <div className="analytics-item">
+                      <span className="analytics-label">Domain</span>
+                      <span className="analytics-value">{selectedDomain}</span>
+                    </div>
+                    <div className="analytics-item">
+                      <span className="analytics-label">Strategy</span>
+                      <span className="analytics-value">{promptTypes.find(p => p.id === promptType)?.name}</span>
+                    </div>
+                    <div className="analytics-item">
+                      <span className="analytics-label">Model</span>
+                      <span className="analytics-value">{llmModels.find(m => m.id === selectedModel)?.name}</span>
+                    </div>
+                    <div className="analytics-item">
+                      <span className="analytics-label">Efficiency</span>
+                      <span className="analytics-value">
+                        {promptCraftJson.metadata.complexity_score > 7 ? 'High' : 
+                         promptCraftJson.metadata.complexity_score > 4 ? 'Medium' : 'Low'}
+                      </span>
+                    </div>
+                  </div>
                 </div>
-                <div>
-                  <p className="text-slate-400 mb-1">Strategy:</p>
-                  <p className="text-white font-medium">{promptTypes.find(p => p.id === promptType)?.name}</p>
+              </div>
+
+              {/* Right Column - Actions & Metadata */}
+              <div className="output-right-column">
+                {/* Quick Actions */}
+                <div className="actions-card">
+                  <div className="actions-header">
+                    <h5 className="actions-title">Quick Actions</h5>
+                  </div>
+                  <div className="actions-grid">
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(`System: ${promptCraftJson.prompt.system}\n\nUser: ${generatedPrompt}`);
+                      }}
+                      className="action-btn primary"
+                    >
+                      <Copy className="w-4 h-4" />
+                      <span>Copy Prompt</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        if (promptCraftJson) {
+                          const blob = new Blob([JSON.stringify(promptCraftJson, null, 2)], {type: 'application/json'});
+                          const url = URL.createObjectURL(blob);
+                          const a = document.createElement('a');
+                          a.href = url;
+                          a.download = `promptcraft-${promptCraftJson.id}.json`;
+                          a.click();
+                        }
+                      }}
+                      className="action-btn secondary"
+                    >
+                      <Download className="w-4 h-4" />
+                      <span>Export JSON</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        const shareText = `Check out this PromptCraft 2.0 generated prompt!\n\nDomain: ${selectedDomain}\nStrategy: ${promptTypes.find(p => p.id === promptType)?.name}\nComplexity: ${promptCraftJson.metadata.complexity_score}/10`;
+                        navigator.clipboard.writeText(shareText);
+                      }}
+                      className="action-btn accent"
+                    >
+                      <Share2 className="w-4 h-4" />
+                      <span>Share</span>
+                    </button>
+                    
+                    <button
+                      onClick={() => {
+                        localStorage.setItem(`promptcraft-${Date.now()}`, JSON.stringify(promptCraftJson));
+                      }}
+                      className="action-btn success"
+                    >
+                      <Save className="w-4 h-4" />
+                      <span>Save Local</span>
+                    </button>
+                  </div>
+                </div>
+
+                {/* Metadata Preview */}
+                <div className="metadata-card">
+                  <div className="metadata-header">
+                    <h5 className="metadata-title">Technical Metadata</h5>
+                  </div>
+                  <div className="metadata-content">
+                    <div className="metadata-scroll">
+                      <pre className="metadata-json">{JSON.stringify(promptCraftJson.metadata, null, 2)}</pre>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Deployment Status */}
+                <div className="deployment-card">
+                  <div className="deployment-header">
+                    <Send className="w-5 h-5" />
+                    <h5 className="deployment-title">Deployment Ready</h5>
+                  </div>
+                  <div className="deployment-content">
+                    <div className="deployment-status">
+                      <CheckCircle className="w-4 h-4 text-green-500" />
+                      <span>Optimized for production use</span>
+                    </div>
+                    <div className="deployment-info">
+                      <p>This prompt has been validated and is ready for deployment to your target LLM.</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

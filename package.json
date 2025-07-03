@@ -1,0 +1,69 @@
+{
+  "name": "prompt-craft-2.0",
+  "version": "2.0.0",
+  "description": "AI-Powered Prompt Engineering Platform with Multi-LLM Support, Neo4j Storage, and Domain-Specific Intelligence",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "type-check": "tsc --noEmit",
+    "setup": "node scripts/setup.js",
+    "neo4j:setup": "node scripts/neo4j-setup.js",
+    "llm:config": "node scripts/llm-config.js"
+  },
+  "dependencies": {
+    "next": "^14.0.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "neo4j-driver": "^5.15.0",
+    "openai": "^4.20.1",
+    "@anthropic-ai/sdk": "^0.12.0",
+    "@google/generative-ai": "^0.2.1",
+    "axios": "^1.6.2",
+    "dotenv": "^16.3.1",
+    "uuid": "^9.0.1",
+    "joi": "^17.11.0",
+    "winston": "^3.11.0",
+    "lucide-react": "^0.294.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.0.0",
+    "tailwind-merge": "^2.1.0",
+    "framer-motion": "^10.16.16",
+    "react-hot-toast": "^2.4.1"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@types/uuid": "^9.0.7",
+    "typescript": "^5.3.3",
+    "eslint": "^8.56.0",
+    "eslint-config-next": "^14.0.4",
+    "tailwindcss": "^3.3.6",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.32",
+    "prettier": "^3.1.1"
+  },
+  "keywords": [
+    "ai",
+    "prompt-engineering",
+    "llm",
+    "claude",
+    "openai",
+    "gemini",
+    "neo4j",
+    "rag",
+    "domain-specific",
+    "prompt-craft",
+    "next.js",
+    "typescript"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/prompt-craft-2.0.git"
+  },
+  "author": "VRamamurthy",
+  "license": "MIT"
+}

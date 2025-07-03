@@ -301,6 +301,54 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - **Tailwind CSS** for utility-first styling
 - **Next.js Team** for the amazing framework
 - **Local LLM Community** for model integrations
+# 🚀 PromptCraft 2.0
+
+**Enterprise AI Prompt Engineering Platform with MCP & Multi-LLM Support**
+
+![PromptCraft 2.0](https://img.shields.io/badge/PromptCraft-2.0-purple)
+![Next.js](https://img.shields.io/badge/Next.js-14-black)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-3-cyan)
+
+---
+
+> 🆕 **v2.0 Highlights**:
+>
+> - ✅ Supports **MCP (Model Context Protocol)** for structured prompt logic
+> - ✅ Built-in diagnostics, error feedback, and model connection testing
+> - ✅ Neo4j graph DB integration for prompt versioning & analytics
+> - ✅ Plug-and-play with **local LLMs** (Phi-3, SQLCoder, Mistral, DeepSeek)
+> - ✅ GitHub & Google integrations for prompt sync & sharing
+
+---
+
+## ✨ Key Features
+
+- **Domain-Aware Prompting**: Templates for Banking, Healthcare, Retail, Architecture
+- **Multi-Model Support**: Local + Cloud LLMs via configurable endpoints
+- **MCP-Enabled**: Prompts carry context, metadata, and versioning
+- **Neo4j Graph Storage**: Track prompt lineage, usage, relationships
+- **RAG-Friendly**: Integrates easily with Retrieval-Augmented Generation pipelines
+- **Export & Deploy**: Save to GitHub, Google Drive, or internal tools
+
+---
+
+## 🛠️ Tech Stack
+
+- **Frontend**: Next.js 14, TypeScript, Tailwind CSS, Lucide Icons
+- **Infra**: Neo4j, LangChain-ready, Custom Prompt JSON Format
+- **LLMs**: Works with Local Inference & APIs (Claude, GPT, DeepSeek, etc.)
+
+---
+
+## 🚀 Quick Start
+
+```bash
+git clone https://github.com/valarama/prompt_craft2.0.git
+cd prompt_craft2.0
+npm install
+cp .env.example .env.local
+npm run dev
 
 ## 📞 Support
 
